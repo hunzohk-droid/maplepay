@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f8f4">
+  <title>BC Paycheque Calculator 2026 – Take-Home Pay After Tax | MaplePay</title>
+  <meta name="description" content="Free 2026 BC paycheque calculator for employees. Enter your pay, see take-home pay after income tax, CPP and EI in seconds. No signup.">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18352b;
+      --muted: #65756d;
+      --green: #176b4b;
+      --green-dark: #10553a;
+      --green-pale: #eaf4ed;
+      --line: #e2e9e3;
+      --paper: #ffffff;
+      --page: #f6f8f4;
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    .page {
+      width: min(100% - 32px, 860px);
+      margin: 0 auto;
+      padding: 42px 0 32px;
+    }
+
+    header { margin-bottom: 26px; }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--green);
+      font-size: .9rem;
+      font-weight: 750;
+      letter-spacing: .02em;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 11px;
+      background: var(--green);
+      color: white;
+      font-size: 20px;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 16px 0 8px;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      letter-spacing: -.045em;
+      line-height: 1.08;
+    }
+
+    .intro {
+      max-width: 620px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .card {
+      margin-top: 20px;
+      padding: clamp(20px, 4vw, 30px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 8px 28px rgb(24 53 43 / 4%);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: end;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: .94rem;
+      font-weight: 700;
+    }
+
+    .field-wrap { position: relative; }
+
+    .currency {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      color: var(--muted);
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    input, select {
+      width: 100%;
+      min-height: 54px;
+      padding: 12px 14px;
+      border: 1px solid #cbd7ce;
+      border-radius: 12px;
+      background: white;
+      color: var(--ink);
+      font: inherit;
+      font-size: 1.05rem;
+    }
+
+    input { padding-left: 34px; }
+
+    input:focus, select:focus {
+      border-color: var(--green);
+      outline: 3px solid rgb(23 107 75 / 15%);
+    }
+
+    .hint {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .annual-equivalent {
+      margin: 16px 0 0;
+      color: var(--green-dark);
+      font-size: .94rem;
+      font-weight: 700;
+    }
+
+    .results-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .results-heading h2, .section-title {
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: -.02em;
+    }
+
+    .year-tag {
+      padding: 5px 10px;
+      border-radius: 99px;
+      background: var(--green-pale);
+      color: var(--green-dark);
+      font-size: .8rem;
+      font-weight: 750;
+    }
+
+    .take-home {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px 16px;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 16px;
+      background: var(--green);
+      color: white;
+    }
+
+    .take-home-label { font-weight: 650; }
+    .take-home-period { color: #d8eee1; font-size: .9rem; }
+
+    .take-home-value {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      font-size: clamp(2rem, 8vw, 3.1rem);
+      font-weight: 800;
+      letter-spacing: -.05em;
+      line-height: 1;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .rate {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .rate strong { color: var(--ink); }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-variant-numeric: tabular-nums;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    th:first-child, td:first-child { text-align: left; }
+
+    thead th {
+      color: var(--muted);
+      font-size: .82rem;
+      font-weight: 700;
+    }
+
+    tbody td { font-size: .96rem; }
+    tbody tr:last-child td { border-bottom: 0; }
+
+    .net-row td {
+      color: var(--green-dark);
+      font-weight: 800;
+    }
+
+    .section-title { margin-bottom: 8px; }
+
+    .how-intro {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .tax-section + .tax-section {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .bracket-list {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .bracket-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: #344a3f;
+      font-size: .93rem;
+    }
+
+    .bracket-list li span:last-child {
+      font-weight: 700;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .detail {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    a { color: var(--green-dark); }
+
+    .disclaimer {
+      margin: 20px 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .page { width: min(100% - 22px, 860px); padding-top: 26px; }
+      .form-grid { grid-template-columns: 1fr; gap: 14px; }
+      .card { padding: 19px 16px; border-radius: 16px; }
+      .take-home { padding: 17px 14px; }
+      th, td { padding: 11px 7px; }
+      .bracket-list li { font-size: .88rem; }
+    }
+  </style>
+    <meta name="description" content="Free 2026 BC paycheque calculator for employees. Enter your pay, see take-home pay after income tax, CPP and EI in seconds. No signup.">
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="brand"><span class="brand-mark" aria-hidden="true">🍁</span> MaplePay</div>
+      <h1>2026 BC Take-Home Pay Calculator</h1>
+      <p class="intro">See an estimate of what you could take home after income tax, CPP, and EI.</p>
+    </header>
+
+    <section class="card" aria-label="Pay details">
+      <div class="form-grid">
+        <div>
+          <label for="pay-amount">Pay amount</label>
+          <div class="field-wrap">
+            <span class="currency" aria-hidden="true">$</span>
+            <input id="pay-amount" type="number" min="0" step="0.01" value="60000" inputmode="decimal">
+          </div>
+        </div>
+
+        <div>
+          <label for="pay-basis">I know my pay as</label>
+          <select id="pay-basis">
+            <option value="hourly">Hourly</option>
+            <option value="weekly">Weekly</option>
+            <option value="biweekly">Bi-weekly</option>
+            <option value="monthly">Monthly</option>
+            <option value="annual" selected>Annual</option>
+          </select>
+        </div>
+
+        <div id="hours-field" hidden>
+          <label for="hours-per-week">Hours per week</label>
+          <input id="hours-per-week" type="number" min="0" step="0.25" value="40" inputmode="decimal">
+        </div>
+
+        <div>
+          <label for="frequency">Pay frequency</label>
+          <select id="frequency">
+            <option value="52">Weekly (52)</option>
+            <option value="26" selected>Bi-weekly (26)</option>
+            <option value="24">Semi-monthly (24)</option>
+            <option value="12">Monthly (12)</option>
+          </select>
+        </div>
+      </div>
+      <p class="annual-equivalent" id="annual-equivalent" aria-live="polite">≈ $60,000 per year</p>
+    </section>
+
+    <section class="card" aria-labelledby="calculator-title" aria-live="polite">
+      <div class="results-heading">
+        <h2 id="calculator-title">Your estimated pay</h2>
+        <span class="year-tag">2026 tax year</span>
+      </div>
+
+      <div class="take-home">
+        <div class="take-home-label">Take-home pay</div>
+        <div class="take-home-period" id="period-label">Every two weeks</div>
+        <div class="take-home-value" id="net-period">$0.00</div>
+      </div>
+
+      <p class="rate">Effective tax rate <strong id="effective-rate">0.00%</strong></p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Pay breakdown</th>
+              <th scope="col">Per paycheque</th>
+              <th scope="col">Annual</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Gross pay</td><td id="gross-period"></td><td id="gross-annual"></td></tr>
+            <tr><td>Federal tax</td><td id="federal-period"></td><td id="federal-annual"></td></tr>
+            <tr><td>BC tax</td><td id="bc-period"></td><td id="bc-annual"></td></tr>
+            <tr><td>CPP</td><td id="cpp-period"></td><td id="cpp-annual"></td></tr>
+            <tr><td>EI</td><td id="ei-period"></td><td id="ei-annual"></td></tr>
+            <tr class="net-row"><td>Net take-home</td><td id="net-table-period"></td><td id="net-annual"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="how-title">
+      <h2 class="section-title" id="how-title">How we calculate</h2>
+      <p class="how-intro">We apply each tax rate only to the part of your income that falls in that bracket, then subtract the basic personal tax credits.</p>
+
+      <div class="tax-section">
+        <h3>Federal income tax</h3>
+        <ul class="bracket-list">
+          <li><span>Up to $58,523</span><span>14%</span></li>
+          <li><span>$58,523 to $117,045</span><span>20.5%</span></li>
+          <li><span>$117,045 to $181,440</span><span>26%</span></li>
+          <li><span>$181,440 to $258,482</span><span>29%</span></li>
+          <li><span>Over $258,482</span><span>33%</span></li>
+        </ul>
+        <p class="detail">Federal basic personal amount: $16,452, providing a $2,303.28 tax credit. Source: <a href="https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/canadian-income-tax-rates-individuals-current-previous-years.html" target="_blank" rel="noopener noreferrer">Canada Revenue Agency (CRA)</a>.</p>
+      </div>
+
+      <div class="tax-section">
+        <h3>British Columbia income tax</h3>
+        <ul class="bracket-list">
+          <li><span>Up to $50,363</span><span>5.6%</span></li>
+          <li><span>$50,363 to $100,728</span><span>7.7%</span></li>
+          <li><span>$100,728 to $115,648</span><span>10.5%</span></li>
+          <li><span>$115,648 to $140,430</span><span>12.29%</span></li>
+          <li><span>$140,430 to $190,405</span><span>14.7%</span></li>
+          <li><span>$190,405 to $265,545</span><span>16.8%</span></li>
+          <li><span>Over $265,545</span><span>20.5%</span></li>
+        </ul>
+        <p class="detail">BC basic personal amount: $13,216, providing a $740.10 tax credit. Source: <a href="https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/tax-rates" target="_blank" rel="noopener noreferrer">Government of British Columbia</a>.</p>
+      </div>
+
+      <div class="tax-section">
+        <h3>Payroll contributions</h3>
+        <ul class="bracket-list">
+          <li><span>CPP</span><span>5.95% from $3,500 to $74,600 (max $4,230.45)</span></li>
+          <li><span>CPP2</span><span>4% from $74,600 to $85,000</span></li>
+          <li><span>EI</span><span>1.63% up to $68,900 (max $1,123.07)</span></li>
+        </ul>
+        <p class="detail">This estimate assumes you are a BC resident and have employment income only. CPP and EI are added to the deductions before net pay is calculated.</p>
+      </div>
+    </section>
+    <section style="max-width:800px;margin:2rem auto;padding:0 1rem;">
+      <h2>Frequently asked questions</h2>
+      <h3>How much tax is deducted from my paycheque in BC?</h3>
+      <p>It depends on your income. In 2026, BC tax starts at 5.6% up to $50,363, plus federal tax from 14%, plus CPP (5.95%) and EI (1.63%). Enter your pay above for your exact breakdown.</p>
+      <h3>What is the BC basic personal amount for 2026?</h3>
+      <p>$13,216 — the first $13,216 you earn is free from BC tax, worth a $740.10 credit. Federally it's $16,452.</p>
+      <h3>What is CPP2?</h3>
+      <p>An extra 4% CPP on earnings between $74,600 and $85,000. Most workers never hit it, but high earners will see it on their stub.</p>
+      <h3>Why is my actual paycheque different from this estimate?</h3>
+      <p>Your employer uses your TD1 claims (spouse, dependants, other credits), which no calculator can know. CPP and EI should match your stub to the cent — if income tax differs, that's usually why.</p>
+    </section>
+    
+
+    <p class="disclaimer">Estimate for information only — not financial or tax advice.</p>
+  </main>
+
+  <script>
+    const federalBrackets = [
+      { limit: 58523, rate: 0.14 },
+      { limit: 117045, rate: 0.205 },
+      { limit: 181440, rate: 0.26 },
+      { limit: 258482, rate: 0.29 },
+      { limit: Infinity, rate: 0.33 }
+    ];
+
+    const bcBrackets = [
+      { limit: 50363, rate: 0.056 },
+      { limit: 100728, rate: 0.077 },
+      { limit: 115648, rate: 0.105 },
+      { limit: 140430, rate: 0.1229 },
+      { limit: 190405, rate: 0.147 },
+      { limit: 265545, rate: 0.168 },
+      { limit: Infinity, rate: 0.205 }
+    ];
+
+    const amountInput = document.getElementById("pay-amount");
+    const basisInput = document.getElementById("pay-basis");
+    const hoursInput = document.getElementById("hours-per-week");
+    const hoursField = document.getElementById("hours-field");
+    const frequencyInput = document.getElementById("frequency");
+
+    const currency = new Intl.NumberFormat("en-CA", {
+      style: "currency",
+      currency: "CAD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+    const wholeDollarCurrency = new Intl.NumberFormat("en-CA", {
+      style: "currency",
+      currency: "CAD",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    });
+
+    function progressiveTax(income, brackets) {
+      let tax = 0;
+      let lowerLimit = 0;
+
+      for (const bracket of brackets) {
+        const taxableInBracket = Math.max(0, Math.min(income, bracket.limit) - lowerLimit);
+        tax += taxableInBracket * bracket.rate;
+        lowerLimit = bracket.limit;
+        if (income <= bracket.limit) break;
+      }
+
+      return tax;
+    }
+
+    function getAnnualIncome() {
+      const amount = Math.max(0, Number(amountInput.value) || 0);
+
+      switch (basisInput.value) {
+        case "hourly":
+          return amount * Math.max(0, Number(hoursInput.value) || 0) * 52;
+        case "weekly":
+          return amount * 52;
+        case "biweekly":
+          return amount * 26;
+        case "monthly":
+          return amount * 12;
+        case "annual":
+        default:
+          return amount;
+      }
+    }
+
+    function calculate() {
+      const isHourly = basisInput.value === "hourly";
+      hoursField.hidden = !isHourly;
+
+      const salary = getAnnualIncome();
+      const periods = Number(frequencyInput.value);
+
+      document.getElementById("annual-equivalent").textContent =
+        "≈ " + wholeDollarCurrency.format(salary) + " per year";
+
+      const federalTax = Math.max(0, progressiveTax(salary, federalBrackets) - 2303.28);
+      const bcTax = Math.max(0, progressiveTax(salary, bcBrackets) - 740.10);
+      const cpp = Math.min(Math.max(0, salary - 3500) * 0.0595, 4230.45)
+        + Math.min(Math.max(0, salary - 74600), 10400) * 0.04;
+      const ei = Math.min(salary, 68900) * 0.0163;
+      const net = salary - federalTax - bcTax - cpp - ei;
+      const perPay = value => currency.format(value / periods);
+
+      document.getElementById("period-label").textContent =
+        periods === 52 ? "Every week" : periods === 26 ? "Every two weeks" : "Every month";
+      document.getElementById("net-period").textContent = perPay(net);
+      document.getElementById("effective-rate").textContent =
+        (salary > 0 ? ((federalTax + bcTax + cpp + ei) / salary) * 100 : 0).toFixed(2) + "%";
+
+      const rows = {
+        gross: salary,
+        federal: federalTax,
+        bc: bcTax,
+        cpp,
+        ei,
+        net
+      };
+
+      for (const [name, annual] of Object.entries(rows)) {
+        document.getElementById(name + "-annual").textContent = currency.format(annual);
+        document.getElementById(name + "-period").textContent = perPay(annual);
+      }
+    }
+
+    amountInput.addEventListener("input", calculate);
+    basisInput.addEventListener("change", calculate);
+    hoursInput.addEventListener("input", calculate);
+    frequencyInput.addEventListener("change", calculate);
+    calculate();
+  </script>
+</body>
+</html>
