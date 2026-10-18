@@ -5,7 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f8f4">
   <title>BC Paycheque Calculator 2026 – Take-Home Pay After Tax | MaplePay</title>
-  <meta name="description" content="Free 2026 BC paycheque calculator for employees. Enter your pay, see take-home pay after income tax, CPP and EI in seconds. No signup.">
+  <meta name="description" content="Estimate your 2026 British Columbia take-home pay. Compare hourly or annual pay after federal tax, BC tax, CPP and EI with MaplePay's free calculator.">
+  <link rel="canonical" href="https://hunzohk-droid.github.io/maplepay/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:title" content="BC Paycheque Calculator 2026 | MaplePay">
+  <meta property="og:description" content="Estimate British Columbia take-home pay after income tax, CPP and EI. Free calculator with weekly, bi-weekly, semi-monthly and monthly results.">
+  <meta property="og:url" content="https://hunzohk-droid.github.io/maplepay/">
+  <meta property="og:site_name" content="MaplePay">
   <style>
     :root {
       color-scheme: light;
@@ -295,7 +302,6 @@
       .bracket-list li { font-size: .88rem; }
     }
   </style>
-    <meta name="description" content="Free 2026 BC paycheque calculator for employees. Enter your pay, see take-home pay after income tax, CPP and EI in seconds. No signup.">
 </head>
 <body>
   <main class="page">
@@ -356,7 +362,7 @@
         <div class="take-home-value" id="net-period">$0.00</div>
       </div>
 
-      <p class="rate">Effective tax rate <strong id="effective-rate">0.00%</strong></p>
+      <p class="rate">Total deduction rate <strong id="effective-rate">0.00%</strong></p>
 
       <div class="table-wrap">
         <table>
@@ -373,7 +379,7 @@
             <tr><td>BC tax</td><td id="bc-period"></td><td id="bc-annual"></td></tr>
             <tr><td>CPP</td><td id="cpp-period"></td><td id="cpp-annual"></td></tr>
             <tr><td>EI</td><td id="ei-period"></td><td id="ei-annual"></td></tr>
-            <tr class="net-row"><td>Net take-home</td><td id="net-table-period"></td><td id="net-annual"></td></tr>
+            <tr class="net-row"><td>Net take-home</td><td id="net-period-table"></td><td id="net-annual"></td></tr>
           </tbody>
         </table>
       </div>
@@ -422,16 +428,28 @@
     <section style="max-width:800px;margin:2rem auto;padding:0 1rem;">
       <h2>Frequently asked questions</h2>
       <h3>How much tax is deducted from my paycheque in BC?</h3>
-      <p>It depends on your income. In 2026, BC tax starts at 5.6% up to $50,363, plus federal tax from 14%, plus CPP (5.95%) and EI (1.63%). Enter your pay above for your exact breakdown.</p>
+      <p>It depends on your income. In 2026, BC tax starts at 5.6% up to $50,363, plus federal tax from 14%, plus CPP (5.95%) and EI (1.63%). Enter your pay above for an estimated breakdown.</p>
       <h3>What is the BC basic personal amount for 2026?</h3>
       <p>$13,216 — the first $13,216 you earn is free from BC tax, worth a $740.10 credit. Federally it's $16,452.</p>
       <h3>What is CPP2?</h3>
-      <p>An extra 4% CPP on earnings between $74,600 and $85,000. Most workers never hit it, but high earners will see it on their stub.</p>
+      <p>An extra 4% CPP on earnings between $74,600 and $85,000. It applies when your pensionable earnings exceed the first CPP earnings ceiling.</p>
       <h3>Why is my actual paycheque different from this estimate?</h3>
-      <p>Your employer uses your TD1 claims (spouse, dependants, other credits), which no calculator can know. CPP and EI should match your stub to the cent — if income tax differs, that's usually why.</p>
+      <p>Your employer uses your TD1 claims (spouse, dependants, other credits), which no calculator can know. Actual deductions can also differ because of payroll rounding, year-to-date contributions, taxable benefits, pension contributions and other adjustments. This calculator is a simplified annual estimate, not an exact payroll calculation.</p>
     </section>
     
 
+    <section class="card" aria-labelledby="using-title">
+      <h2 id="using-title" class="section-title">How to use this BC salary calculator</h2>
+      <p>Enter your gross pay in Canadian dollars before deductions. Choose hourly, weekly, bi-weekly, monthly or annual pay, then select how often you receive a paycheque. For hourly pay, enter your usual hours per week.</p>
+      <p>Bi-weekly pay means 26 payments per year. Semi-monthly pay means 24 payments per year. The annual estimate is divided by your selected number of payments; actual payroll deductions may vary throughout the year.</p>
+    </section>
+    <section class="card" aria-labelledby="about-title">
+      <h2 id="about-title" class="section-title">About MaplePay and this estimate</h2>
+      <p>MaplePay is a free calculator for estimating employment take-home pay in British Columbia. It is an independent tool and is not affiliated with the Canada Revenue Agency or the Government of British Columbia.</p>
+      <p>The simplified calculation applies the displayed tax brackets and basic personal credits, then subtracts CPP and EI. It does not model every credit, deduction or payroll adjustment, including CPP/EI tax credits, enhanced CPP deductions, income-tested personal amounts and the BC tax reduction. Results may overstate tax and should be checked against official payroll tools.</p>
+      <p>For an official comparison, use the <a href="https://www.canada.ca/en/revenue-agency/services/e-services/digital-services-businesses/payroll-deductions-online-calculator.html">CRA Payroll Deductions Online Calculator</a>.</p>
+      <p>Found a problem? <a href="https://github.com/hunzohk-droid/maplepay/issues">Report an issue on GitHub</a>. Please do not include personal or payroll information in a public report.</p>
+    </section>
     <p class="disclaimer">Estimate for information only — not financial or tax advice.</p>
   </main>
 
@@ -525,7 +543,7 @@
       const perPay = value => currency.format(value / periods);
 
       document.getElementById("period-label").textContent =
-        periods === 52 ? "Every week" : periods === 26 ? "Every two weeks" : "Every month";
+        periods === 52 ? "Every week" : periods === 26 ? "Every two weeks" : periods === 24 ? "Twice a month" : "Every month";
       document.getElementById("net-period").textContent = perPay(net);
       document.getElementById("effective-rate").textContent =
         (salary > 0 ? ((federalTax + bcTax + cpp + ei) / salary) * 100 : 0).toFixed(2) + "%";
@@ -541,7 +559,7 @@
 
       for (const [name, annual] of Object.entries(rows)) {
         document.getElementById(name + "-annual").textContent = currency.format(annual);
-        document.getElementById(name + "-period").textContent = perPay(annual);
+        document.getElementById(name === "net" ? "net-period-table" : name + "-period").textContent = perPay(annual);
       }
     }
 
