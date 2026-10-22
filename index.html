@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-CA">
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SWT1PSDMZ2"></script>
@@ -22,6 +22,51 @@
   <meta property="og:description" content="Estimate British Columbia take-home pay after income tax, CPP and EI. Free calculator with weekly, bi-weekly, semi-monthly and monthly results.">
   <meta property="og:url" content="https://hunzohk-droid.github.io/maplepay/">
   <meta property="og:site_name" content="MaplePay">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍁</text></svg>">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "MaplePay BC Take-Home Pay Calculator 2026",
+        "url": "https://hunzohk-droid.github.io/maplepay/",
+        "description": "Estimate your 2026 British Columbia take-home pay after federal tax, BC tax, CPP and EI.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "inLanguage": "en-CA",
+        "isAccessibleForFree": true,
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CAD" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much tax is deducted from my paycheque in BC?",
+            "acceptedAnswer": { "@type": "Answer", "text": "It depends on your income. In 2026, BC tax starts at 5.6% up to $50,363, plus federal tax from 14%, plus CPP (5.95%) and EI (1.63%). Enter your pay above for an estimated breakdown." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the BC basic personal amount for 2026?",
+            "acceptedAnswer": { "@type": "Answer", "text": "$13,216 — the first $13,216 you earn is free from BC tax, worth a $740.10 credit. The federal basic personal amount is up to $16,452 and is reduced at higher net incomes." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is CPP2?",
+            "acceptedAnswer": { "@type": "Answer", "text": "An extra 4% CPP on earnings between $74,600 and $85,000. It applies when your pensionable earnings exceed the first CPP earnings ceiling." }
+          },
+          {
+            "@type": "Question",
+            "name": "Why is my actual paycheque different from this estimate?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Your employer uses your TD1 claims (spouse, dependants and other credits). MaplePay assumes only the basic personal claims. Actual deductions can also differ because of payroll rounding, year-to-date contributions, taxable benefits, pension contributions and other adjustments. This calculator is a simplified annual estimate, not an exact payroll calculation." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <style>
     :root {
       color-scheme: light;
@@ -309,6 +354,8 @@
       .take-home { padding: 17px 14px; }
       th, td { padding: 11px 7px; }
       .bracket-list li { font-size: .88rem; }
+      .bracket-list li span:first-child { flex-shrink: 0; }
+      .bracket-list li span:last-child { white-space: normal; }
     }
   </style>
 </head>
