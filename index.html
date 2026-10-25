@@ -22,8 +22,17 @@
   <meta property="og:description" content="Estimate British Columbia take-home pay after income tax, CPP and EI. Free calculator with weekly, bi-weekly, semi-monthly and monthly results.">
   <meta property="og:url" content="https://hunzohk-droid.github.io/maplepay/">
   <meta property="og:site_name" content="MaplePay">
-  <meta name="twitter:card" content="summary">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍁</text></svg>">
+  <meta property="og:image" content="https://hunzohk-droid.github.io/maplepay/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MaplePay – free BC take-home pay calculator for 2026">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BC Take Home Pay Calculator 2026 | MaplePay">
+  <meta name="twitter:description" content="Estimate British Columbia take-home pay after income tax, CPP and EI. Free, no sign-up.">
+  <meta name="twitter:image" content="https://hunzohk-droid.github.io/maplepay/og-image.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,6 +46,8 @@
         "operatingSystem": "Any",
         "inLanguage": "en-CA",
         "isAccessibleForFree": true,
+        "dateModified": "2026-10-25",
+        "image": "https://hunzohk-droid.github.io/maplepay/og-image.png",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CAD" }
       },
       {
@@ -383,6 +394,7 @@
       .take-home > * { min-width: 0; overflow-wrap: anywhere; }
       .take-home-value { grid-column: 1; grid-row: auto; text-align: left; margin-top: 6px; }
     }
+    .updated { margin: 10px 0 0; font-size: .9rem; color: var(--muted); }
   </style>
 </head>
 <body>
@@ -391,6 +403,7 @@
       <div class="brand"><span class="brand-mark" aria-hidden="true">🍁</span> MaplePay</div>
       <h1>2026 BC Take-Home Pay Calculator</h1>
       <p class="intro">Estimate your full-year 2026 take-home pay after income tax, CPP, and EI. Paycheque amounts are annual averages, not exact payroll withholdings.</p>
+      <p class="updated">Updated <time datetime="2026-10-25">October 25, 2026</time> for 2026 CRA and BC tax rates.</p>
     </header>
 
     <section class="card" aria-label="Pay details">
@@ -567,7 +580,13 @@
       <p>For an official comparison, use the <a href="https://www.canada.ca/en/revenue-agency/services/e-services/digital-services-businesses/payroll-deductions-online-calculator.html">CRA Payroll Deductions Online Calculator</a>.</p>
       <p>Found a problem? <a href="https://github.com/hunzohk-droid/maplepay/issues">Report an issue on GitHub</a>. Please do not include personal or payroll information in a public report.</p>
     </section>
-    <p class="disclaimer">Estimate for information only — not financial or tax advice.</p>
+    <section class="card" aria-labelledby="privacy-title" id="privacy">
+      <h2 id="privacy-title" class="section-title">Privacy</h2>
+      <p>The calculator runs entirely in your browser. The pay amounts you enter are not saved, stored or sent to MaplePay or anyone else.</p>
+      <p>MaplePay uses Google Analytics to count visits and understand how the site is used, for example which pages are viewed, the type of device and browser, and approximate location (city or region). Google Analytics uses cookies to do this. MaplePay does not collect your name, email or other personal details.</p>
+      <p>You can block analytics with your browser's privacy settings, an ad blocker, or the <a href="https://tools.google.com/dlpage/gaoptout">Google Analytics opt-out add-on</a>. To learn how Google handles this data, see <a href="https://policies.google.com/technologies/partner-sites">how Google uses information from sites that use its services</a>.</p>
+    </section>
+    <p class="disclaimer">Estimate for information only — not financial or tax advice. <a href="#privacy">Privacy</a></p>
   </main>
 
   <script>
