@@ -46,7 +46,7 @@
         "operatingSystem": "Any",
         "inLanguage": "en-CA",
         "isAccessibleForFree": true,
-        "dateModified": "2026-10-25",
+        "dateModified": "2026-11-02",
         "image": "https://hunzohk-droid.github.io/maplepay/og-image.png",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CAD" }
       },
@@ -574,11 +574,17 @@
     <section class="card" aria-labelledby="about-title">
       <h2 id="about-title" class="section-title">About MaplePay and this estimate</h2>
       <p>MaplePay is a free calculator for estimating employment take-home pay in British Columbia. It is an independent tool and is not affiliated with the Canada Revenue Agency or the Government of British Columbia.</p>
+      <p>Maintained by the MaplePay project. You can inspect the <a href="https://github.com/hunzohk-droid/maplepay">source code and change history</a> and <a href="https://github.com/hunzohk-droid/maplepay/issues">report a calculation problem</a>.</p>
       <p>The full-year calculation uses the displayed annual tax brackets and employment credits, then subtracts income tax, CPP and EI. It includes base CPP and EI tax credits, enhanced CPP deductions, the federal Canada employment amount, the federal basic personal amount phase-out and the BC tax reduction. It excludes RRSP/RPP contributions, union dues, dependants, tuition, disability and age credits, bonuses, multiple jobs and refundable benefits. It is not a tax-return or payroll-withholding engine.</p>
       <p><strong>2026 payroll timing:</strong> The full-year BC lowest tax rate is 5.60%. CRA uses a prorated 6.14% withholding rate for July–December 2026 to catch up for the lower rate used earlier in the year. MaplePay uses the full-year rate and $690 annual tax reduction; it does not reproduce this mid-year payroll adjustment.</p>
       <p>Rules checked October 18, 2026. Sources: <a href="https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/basic">BC 2026 tax credits and reduction</a>, <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html">CRA 2026 formulas</a>, and <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032bc-july/t4032bc-july-general-information.html">CRA BC payroll rates and contribution limits</a>.</p>
       <p>For an official comparison, use the <a href="https://www.canada.ca/en/revenue-agency/services/e-services/digital-services-businesses/payroll-deductions-online-calculator.html">CRA Payroll Deductions Online Calculator</a>.</p>
       <p>Found a problem? <a href="https://github.com/hunzohk-droid/maplepay/issues">Report an issue on GitHub</a>. Please do not include personal or payroll information in a public report.</p>
+    </section>
+    <section class="card" aria-labelledby="verification-title" id="verification">
+      <h2 id="verification-title" class="section-title">Calculation checks</h2>
+      <p>Checked November 2, 2026: the five annual salary examples above match the calculator, and the $25-an-hour example uses 40 hours per week for 52 weeks. Our automated checks also cover zero income and whether gross pay equals take-home pay plus the listed deductions.</p>
+      <p>Read the <a href="https://github.com/hunzohk-droid/maplepay/blob/main/README.md#calculation-checks">testing record and instructions</a> to reproduce these checks. They check consistency within MaplePay; they do not independently certify the tax rules or reproduce exact employer payroll withholding. The assumptions, exclusions and official sources are listed above.</p>
     </section>
     <section class="card" aria-labelledby="privacy-title" id="privacy">
       <h2 id="privacy-title" class="section-title">Privacy</h2>
