@@ -61,7 +61,7 @@
           {
             "@type": "Question",
             "name": "What is the BC basic personal amount for 2026?",
-            "acceptedAnswer": { "@type": "Answer", "text": "$13,216 — the first $13,216 you earn is free from BC tax, worth a $740.10 credit. The federal basic personal amount is up to $16,452 and is reduced at higher net incomes." }
+            "acceptedAnswer": { "@type": "Answer", "text": "$13,216. At the 5.60% full-year BC rate, this provides a non-refundable credit of up to $740.10 against BC income tax; it does not exempt that amount from CPP or EI. The federal basic personal amount is up to $16,452 and is reduced at higher net incomes." }
           },
           {
             "@type": "Question",
@@ -584,7 +584,7 @@
       <h3>How much tax is deducted from my paycheque in BC?</h3>
       <p>It depends on your income. In 2026, BC tax starts at 5.6% up to $50,363, plus federal tax from 14%, plus CPP (5.95%) and EI (1.63%). Enter your pay above for an estimated breakdown.</p>
       <h3>What is the BC basic personal amount for 2026?</h3>
-      <p>$13,216 — the first $13,216 you earn is free from BC tax, worth a $740.10 credit. The federal basic personal amount is up to $16,452 and is reduced at higher net incomes.</p>
+      <p>$13,216. At the 5.60% full-year BC rate, this provides a non-refundable credit of up to $740.10 against BC income tax; it does not exempt that amount from CPP or EI. The federal basic personal amount is up to $16,452 and is reduced at higher net incomes.</p>
       <h3>What is CPP2?</h3>
       <p>An extra 4% CPP on earnings between $74,600 and $85,000. It applies when your pensionable earnings exceed the first CPP earnings ceiling.</p>
       <h3>Why is my actual paycheque different from this estimate?</h3>
@@ -602,15 +602,15 @@
       <p>MaplePay is a free calculator for estimating employment take-home pay in British Columbia. It is an independent tool and is not affiliated with the Canada Revenue Agency or the Government of British Columbia.</p>
       <p>Maintained by the MaplePay project. You can inspect the <a href="https://github.com/hunzohk-droid/maplepay">source code and change history</a> and <a href="https://github.com/hunzohk-droid/maplepay/issues">report a calculation problem</a>.</p>
       <p>The full-year calculation uses the displayed annual tax brackets and employment credits, then subtracts income tax, CPP and EI. It includes base CPP and EI tax credits, enhanced CPP deductions, the federal Canada employment amount, the federal basic personal amount phase-out and the BC tax reduction. It excludes RRSP/RPP contributions, union dues, dependants, tuition, disability and age credits, bonuses, multiple jobs and refundable benefits. It is not a tax-return or payroll-withholding engine.</p>
-      <p><strong>2026 payroll timing:</strong> The full-year BC lowest tax rate is 5.60%. CRA uses a prorated 6.14% withholding rate for July–December 2026 to catch up for the lower rate used earlier in the year. MaplePay uses the full-year rate and $690 annual tax reduction; it does not reproduce this mid-year payroll adjustment.</p>
-      <p>Rules checked October 18, 2026. Sources: <a href="https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/basic">BC 2026 tax credits and reduction</a>, <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html">CRA 2026 formulas</a>, and <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032bc-july/t4032bc-july-general-information.html">CRA BC payroll rates and contribution limits</a>.</p>
+      <p><strong>2026 payroll timing:</strong> The full-year BC lowest tax rate is 5.60%. CRA uses a prorated 6.14% withholding rate and an $805 tax-reduction base for July–December 2026 to adjust for the amounts used earlier in the year. MaplePay uses the full-year rate and $690 annual tax reduction; it does not reproduce this mid-year payroll adjustment.</p>
+      <p>Rules reviewed November 2, 2026 against official CRA and BC sources. Sources: <a href="https://www2.gov.bc.ca/gov/content/taxes/income-taxes/personal/credits/basic">BC 2026 tax credits and reduction</a>, <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jul/t4127-jul-payroll-deductions-formulas.html">CRA 2026 formulas (July update)</a>, and <a href="https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4032-payroll-deductions-tables/t4032bc-july/t4032bc-july-general-information.html">CRA BC payroll rates and contribution limits</a>.</p>
       <p>For an official comparison, use the <a href="https://www.canada.ca/en/revenue-agency/services/e-services/digital-services-businesses/payroll-deductions-online-calculator.html">CRA Payroll Deductions Online Calculator</a>.</p>
       <p>Found a problem? <a href="https://github.com/hunzohk-droid/maplepay/issues">Report an issue on GitHub</a>. Please do not include personal or payroll information in a public report.</p>
     </section>
     <section class="card reference-section" aria-labelledby="verification-title" id="verification">
       <h2 id="verification-title" class="section-title">Calculation checks</h2>
       <p>Checked November 2, 2026: the five annual salary examples above match the calculator, and the $25-an-hour example uses 40 hours per week for 52 weeks. Our automated checks also cover zero income and whether gross pay equals take-home pay plus the listed deductions.</p>
-      <p>Read the <a href="https://github.com/hunzohk-droid/maplepay/blob/main/README.md#calculation-checks">testing record and instructions</a> to reproduce these checks. They check consistency within MaplePay; they do not independently certify the tax rules or reproduce exact employer payroll withholding. The assumptions, exclusions and official sources are listed above.</p>
+      <p>Read the <a href="https://github.com/hunzohk-droid/maplepay/blob/main/README.md#calculation-checks">testing record and instructions</a> to reproduce these checks. A separate comparison of 23 annual-income cases against published CRA tables found CPP and EI agreed to the cent, with annual net differences below $1 from rounded tax-table constants. This developer review is not CRA approval or professional certification, and does not reproduce exact employer payroll withholding. The assumptions, exclusions and official sources are listed above.</p>
     </section>
     <section class="card reference-section" aria-labelledby="privacy-title" id="privacy">
       <h2 id="privacy-title" class="section-title">Privacy</h2>
