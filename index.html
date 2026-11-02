@@ -156,6 +156,14 @@
       box-shadow: 0 8px 28px rgb(24 53 43 / 4%);
     }
 
+    /* Keep the calculator immediate; render long reference sections as needed. */
+    @media screen {
+      .reference-section {
+        content-visibility: auto;
+        contain-intrinsic-block-size: auto 640px;
+      }
+    }
+
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -481,7 +489,7 @@
     </section>
 
 
-    <section class="card" aria-labelledby="salary-examples-title">
+    <section class="card reference-section" aria-labelledby="salary-examples-title">
       <h2 id="salary-examples-title" class="section-title">BC salary after tax: 2026 examples</h2>
       <p>Compare estimated take-home pay for common annual salaries in British Columbia. These examples use the same full-year employee assumptions as the calculator above. All amounts are Canadian dollars.</p>
       <div class="table-wrap" role="region" aria-label="BC salary after tax examples" tabindex="0">
@@ -501,7 +509,7 @@
       <h3>How much is $60,000 after tax in BC?</h3>
       <p>Under these assumptions, a $60,000 annual salary gives an estimated $47,754.56 take-home for 2026, or an average $1,836.71 every two weeks. Enter a different salary above to compare your estimate.</p>
     </section>
-    <section class="card" aria-labelledby="paycheck-title" id="bc-paycheck-calculator">
+    <section class="card reference-section" aria-labelledby="paycheck-title" id="bc-paycheck-calculator">
       <h2 id="paycheck-title" class="section-title">BC paycheck calculator: biweekly vs semi-monthly pay</h2>
       <p>Looking for a BC paycheck calculator? Use the tool above to estimate your take-home pay, then select your pay frequency. For the same annual salary, changing the number of payments changes the estimated amount per paycheque, not the full-year take-home total.</p>
       <div class="table-wrap" role="region" aria-label="Estimated pay by frequency on a $60,000 BC salary" tabindex="0">
@@ -519,19 +527,19 @@
       <p>Biweekly and semi-monthly are different schedules. MaplePay uses 26 payments for its biweekly estimate and 24 for semi-monthly. Some payroll calendars have 27 biweekly paydays; that schedule is not modelled here. These rounded figures use the full-year 2026 BC assumptions listed below and are annual averages, not exact payroll deductions for a particular payday.</p>
       <p>For your own estimate, enter your gross pay, choose the matching pay basis, and select your pay frequency. A different pay schedule alone does not mean you earn more per year; workplace benefits, pension deductions and personal tax claims can also change your actual deposit.</p>
     </section>
-    <section class="card" aria-labelledby="hourly-example-title">
+    <section class="card reference-section" aria-labelledby="hourly-example-title">
       <h2 id="hourly-example-title" class="section-title">Hourly wage calculator BC: a $25-an-hour example</h2>
       <p>At $25 per hour, working 40 paid hours per week for 52 weeks gives $52,000 in gross annual pay. With the assumptions above, estimated annual take-home is $42,035.71, or an average $1,616.76 biweekly.</p>
       <p>To calculate your own hourly wage after tax, select <strong>Hourly</strong> under <strong>I know my pay as</strong>, enter your hourly rate and usual weekly hours, then choose your pay frequency. The estimate assumes 52 paid weeks and does not add overtime or vacation pay separately.</p>
     </section>
-    <section class="card" aria-labelledby="gross-net-title">
+    <section class="card reference-section" aria-labelledby="gross-net-title">
       <h2 id="gross-net-title" class="section-title">Gross to net calculator BC: what changes your pay?</h2>
       <p><strong>Gross pay</strong> is your employment income before deductions. <strong>Net pay</strong>, also called take-home pay, is what remains after deductions.</p>
       <p>MaplePay estimates net pay by subtracting federal income tax, BC income tax, CPP (including CPP2 where applicable) and EI from gross pay. Credits reduce the income tax estimate; enhanced CPP contributions reduce taxable income. Benefits, pension contributions and other deductions on your payslip can change what reaches your bank account.</p>
       <p>This BC pay calculator estimates regular employment income. It does not calculate sales tax, business tax or income tax for other provinces.</p>
     </section>
 
-    <section class="card" aria-labelledby="how-title">
+    <section class="card reference-section" aria-labelledby="how-title">
       <h2 class="section-title" id="how-title">How we calculate</h2>
       <p class="how-intro">We deduct enhanced CPP contributions from employment income before applying the tax brackets. We then apply basic personal credits, base CPP and EI credits, the federal Canada employment amount and the BC tax reduction, where eligible.</p>
 
@@ -571,7 +579,7 @@
         <p class="detail">Assumes a full-year BC resident employee aged 18–64, with one employer, regular pensionable and insurable employment income, and no other income or deductions. CPP includes base, first additional and CPP2 contributions. Annual contributions are spread evenly across pay periods for this estimate.</p>
       </div>
     </section>
-    <section style="max-width:800px;margin:2rem auto;padding:0 1rem;">
+    <section class="reference-section" style="max-width:800px;margin:2rem auto;padding:0 1rem;">
       <h2>Frequently asked questions</h2>
       <h3>How much tax is deducted from my paycheque in BC?</h3>
       <p>It depends on your income. In 2026, BC tax starts at 5.6% up to $50,363, plus federal tax from 14%, plus CPP (5.95%) and EI (1.63%). Enter your pay above for an estimated breakdown.</p>
@@ -584,12 +592,12 @@
     </section>
     
 
-    <section class="card" aria-labelledby="using-title">
+    <section class="card reference-section" aria-labelledby="using-title">
       <h2 id="using-title" class="section-title">How to use this BC salary calculator</h2>
       <p>Enter your gross pay in Canadian dollars before deductions. Choose hourly, weekly, bi-weekly, monthly or annual pay, then select how often you receive a paycheque. For hourly pay, enter your usual hours per week.</p>
       <p>Bi-weekly pay means 26 payments per year. Semi-monthly pay means 24 payments per year. The annual estimate is divided by your selected number of payments; actual payroll deductions may vary throughout the year.</p>
     </section>
-    <section class="card" aria-labelledby="about-title">
+    <section class="card reference-section" aria-labelledby="about-title">
       <h2 id="about-title" class="section-title">About MaplePay and this estimate</h2>
       <p>MaplePay is a free calculator for estimating employment take-home pay in British Columbia. It is an independent tool and is not affiliated with the Canada Revenue Agency or the Government of British Columbia.</p>
       <p>Maintained by the MaplePay project. You can inspect the <a href="https://github.com/hunzohk-droid/maplepay">source code and change history</a> and <a href="https://github.com/hunzohk-droid/maplepay/issues">report a calculation problem</a>.</p>
@@ -599,12 +607,12 @@
       <p>For an official comparison, use the <a href="https://www.canada.ca/en/revenue-agency/services/e-services/digital-services-businesses/payroll-deductions-online-calculator.html">CRA Payroll Deductions Online Calculator</a>.</p>
       <p>Found a problem? <a href="https://github.com/hunzohk-droid/maplepay/issues">Report an issue on GitHub</a>. Please do not include personal or payroll information in a public report.</p>
     </section>
-    <section class="card" aria-labelledby="verification-title" id="verification">
+    <section class="card reference-section" aria-labelledby="verification-title" id="verification">
       <h2 id="verification-title" class="section-title">Calculation checks</h2>
       <p>Checked November 2, 2026: the five annual salary examples above match the calculator, and the $25-an-hour example uses 40 hours per week for 52 weeks. Our automated checks also cover zero income and whether gross pay equals take-home pay plus the listed deductions.</p>
       <p>Read the <a href="https://github.com/hunzohk-droid/maplepay/blob/main/README.md#calculation-checks">testing record and instructions</a> to reproduce these checks. They check consistency within MaplePay; they do not independently certify the tax rules or reproduce exact employer payroll withholding. The assumptions, exclusions and official sources are listed above.</p>
     </section>
-    <section class="card" aria-labelledby="privacy-title" id="privacy">
+    <section class="card reference-section" aria-labelledby="privacy-title" id="privacy">
       <h2 id="privacy-title" class="section-title">Privacy</h2>
       <p>The calculator runs entirely in your browser. The pay amounts you enter are not saved, stored or sent to MaplePay or anyone else.</p>
       <p>MaplePay uses Google Analytics to count visits and understand how the site is used, for example which pages are viewed, the type of device and browser, and approximate location (city or region). Google Analytics uses cookies to do this. MaplePay does not collect your name, email or other personal details.</p>
