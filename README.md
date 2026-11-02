@@ -10,9 +10,15 @@ Run with Node.js (no packages required):
 
 ```sh
 node tests/consistency.mjs
+node tests/input-validation.mjs
 ```
 
 The checks execute the calculation function extracted from `index.html`, rather than a separate implementation. They compare its results with all five salary examples actually displayed in the HTML, all four pay-frequency examples and the displayed $25/hour example. They also verify zero-income behaviour, non-negative deductions and gross/net reconciliation across representative incomes.
+
+The input-validation test runs the actual UI event handlers with a minimal DOM
+stub. Negative/blank pay or hourly inputs and unsafe annual totals must show
+an error and hide the estimate; valid input must restore it. Zero remains
+valid. This fixes the earlier silent conversion of invalid inputs to $0.
 
 These are consistency and regression checks, not an independent certification of tax accuracy. A shared error in the engine and displayed examples can pass these checks. Exact payroll withholding, personal claims and year-to-date adjustments are outside this annual-average calculator's scope. Official references, assumptions and exclusions are published on the live page.
 

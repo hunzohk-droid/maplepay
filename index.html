@@ -56,7 +56,7 @@
           {
             "@type": "Question",
             "name": "How much tax is deducted from my paycheque in BC?",
-            "acceptedAnswer": { "@type": "Answer", "text": "It depends on your income. In 2026, BC tax starts at 5.6% up to $50,363, plus federal tax from 14%, plus CPP (5.95%) and EI (1.63%). Enter your pay above for an estimated breakdown." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Actual payday deductions depend on your income, pay date, TD1 claims and year-to-date contributions. MaplePay estimates full-year tax and divides annual take-home pay by your pay frequency; it does not predict an exact deposit. For July–December 2026, CRA uses temporary BC withholding adjustments that differ from the full-year rates shown here. Use CRA’s Payroll Deductions Online Calculator for a payday-specific estimate." }
           },
           {
             "@type": "Question",
@@ -420,7 +420,7 @@
           <label for="pay-amount">Pay amount</label>
           <div class="field-wrap">
             <span class="currency" aria-hidden="true">$</span>
-            <input id="pay-amount" type="number" min="0" step="0.01" value="60000" inputmode="decimal">
+            <input id="pay-amount" type="number" min="0" step="0.01" value="60000" inputmode="decimal" aria-describedby="input-error">
           </div>
         </div>
 
@@ -437,7 +437,7 @@
 
         <div id="hours-field" hidden>
           <label for="hours-per-week">Hours per week</label>
-          <input id="hours-per-week" type="number" min="0" step="0.25" value="40" inputmode="decimal">
+          <input id="hours-per-week" type="number" min="0" step="0.25" value="40" inputmode="decimal" aria-describedby="input-error">
         </div>
 
         <div>
@@ -450,10 +450,11 @@
           </select>
         </div>
       </div>
+      <p id="input-error" role="alert" hidden></p>
       <p class="annual-equivalent" id="annual-equivalent" aria-live="polite">≈ $60,000 per year</p>
     </section>
 
-    <section class="card" aria-labelledby="calculator-title" aria-live="polite">
+    <section class="card" id="pay-results" aria-labelledby="calculator-title" aria-live="polite">
       <div class="results-heading">
         <h2 id="calculator-title">Your estimated annual-average pay</h2>
         <span class="year-tag">2026 tax year</span>
@@ -582,7 +583,7 @@
     <section class="reference-section" style="max-width:800px;margin:2rem auto;padding:0 1rem;">
       <h2>Frequently asked questions</h2>
       <h3>How much tax is deducted from my paycheque in BC?</h3>
-      <p>It depends on your income. In 2026, BC tax starts at 5.6% up to $50,363, plus federal tax from 14%, plus CPP (5.95%) and EI (1.63%). Enter your pay above for an estimated breakdown.</p>
+      <p>Actual payday deductions depend on your income, pay date, TD1 claims and year-to-date contributions. MaplePay estimates full-year tax and divides annual take-home pay by your pay frequency; it does not predict an exact deposit. For July–December 2026, CRA uses temporary BC withholding adjustments that differ from the full-year rates shown here. Use CRA’s Payroll Deductions Online Calculator for a payday-specific estimate.</p>
       <h3>What is the BC basic personal amount for 2026?</h3>
       <p>$13,216. At the 5.60% full-year BC rate, this provides a non-refundable credit of up to $740.10 against BC income tax; it does not exempt that amount from CPP or EI. The federal basic personal amount is up to $16,452 and is reduced at higher net incomes.</p>
       <h3>What is CPP2?</h3>
@@ -694,7 +695,19 @@ function estimateAnnualPay(gross) {
       const isHourly = basisInput.value === "hourly";
       hoursField.hidden = !isHourly;
 
+      const invalidAmount = amountInput.value.trim() === "" || !Number.isFinite(Number(amountInput.value)) || Number(amountInput.value) < 0;
+      const invalidHours = isHourly && (hoursInput.value.trim() === "" || !Number.isFinite(Number(hoursInput.value)) || Number(hoursInput.value) < 0);
       const salary = getAnnualIncome();
+      const invalidTotal = !Number.isFinite(salary) || !Number.isSafeInteger(Math.round(salary * 100));
+      const error = invalidAmount ? "Enter a pay amount of zero or more." : invalidHours ? "Enter weekly hours of zero or more." : invalidTotal ? "The annual amount is too large to calculate reliably. Enter a smaller pay amount or weekly hours." : "";
+      const errorElement = document.getElementById("input-error");
+      errorElement.textContent = error;
+      errorElement.hidden = !error;
+      amountInput.setAttribute("aria-invalid", String(invalidAmount || (!invalidHours && invalidTotal)));
+      hoursInput.setAttribute("aria-invalid", String(invalidHours));
+      document.getElementById("pay-results").hidden = Boolean(error);
+      document.getElementById("annual-equivalent").hidden = Boolean(error);
+      if (error) return;
       const periods = Number(frequencyInput.value);
 
       document.getElementById("annual-equivalent").textContent =
