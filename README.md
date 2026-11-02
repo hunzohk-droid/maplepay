@@ -12,7 +12,7 @@ Run with Node.js (no packages required):
 node tests/consistency.mjs
 ```
 
-The checks execute the calculation function extracted from `index.html`, rather than a separate implementation. They compare its results with all five salary examples actually displayed in the HTML and the displayed $25/hour example. They also verify zero-income behaviour, non-negative deductions and gross/net reconciliation across representative incomes.
+The checks execute the calculation function extracted from `index.html`, rather than a separate implementation. They compare its results with all five salary examples actually displayed in the HTML, all four pay-frequency examples and the displayed $25/hour example. They also verify zero-income behaviour, non-negative deductions and gross/net reconciliation across representative incomes.
 
 These are consistency and regression checks, not an independent certification of tax accuracy. A shared error in the engine and displayed examples can pass these checks. Exact payroll withholding, personal claims and year-to-date adjustments are outside this annual-average calculator's scope. Official references, assumptions and exclusions are published on the live page.
 

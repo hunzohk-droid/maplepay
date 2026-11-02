@@ -29,4 +29,9 @@ for (const gross of [0, 3500, 20000, 52000, 60000, 74600, 85000, 100000, 300000]
   assert.ok(deductions.every(value => Number.isFinite(value) && value >= 0));
   assert.ok(Math.abs(gross - result.net - deductions.reduce((a, b) => a + b, 0)) < 0.011, `Reconcile ${gross}`);
 }
-console.log('PASS: all five salary rows, hourly example, zero income and nine reconciliation cases.');
+const frequencyRows = [...html.matchAll(/<tr data-pay-periods="(\d+)">[\s\S]*?<td>\s*(\$[\d,.]+)\s*<\/td>\s*<\/tr>/g)];
+assert.equal(frequencyRows.length, 4, 'Check all displayed pay-frequency examples');
+for (const [, periods, amount] of frequencyRows) {
+  assert.equal(Math.round(estimate(60000).net / Number(periods) * 100) / 100, number(amount));
+}
+console.log('PASS: five salary rows, four pay-frequency examples, hourly example, zero income and nine reconciliation cases.');
