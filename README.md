@@ -47,3 +47,30 @@ no other income/deductions. A July–December payslip uses temporary 6.14%
 BC withholding and an $805 reduction base, while the annual model uses
 5.60% and $690. Payroll timing, rounded constants, per-period rounding,
 year-to-date caps and personal claims can therefore produce different deposits.
+
+## Direct CRA PDOC comparison — November 2, 2026
+
+Two fictional salary calculations were completed in the official PDOC
+(version 2026-10-28). Names were blank. Both used British Columbia,
+26 biweekly payments, $2,307.69 gross per payment ($59,999.94 annualized),
+federal TD1 $16,452, provincial TD1 $13,216, 12 pensionable months,
+zero year-to-date earnings/contributions, and no bonuses, benefits or other
+deductions. Only the payment date changed. These are controlled hypothetical
+cases, not two paydays from one real employee's payroll history.
+
+| Per-payment amount | PDOC Jan 6, 2026 | PDOC Nov 6, 2026 | MaplePay annual average |
+|---|---:|---:|---:|
+| Federal income tax | $205.32 | $205.32 | $205.32 |
+| BC income tax | $91.80 | $105.66 | $98.75 |
+| CPP (CPP2 zero) | $129.30 | $129.30 | $129.30 |
+| EI | $37.62 | $37.62 | $37.62 |
+| Net pay | $1,843.65 | $1,829.79 | $1,836.71 |
+
+Only BC withholding differed in these examples. This agrees with the
+temporary rate adjustment explained by CRA. It is not evidence that
+MaplePay predicts exact deposits; annual averaging and per-period rounding
+remain different methods. Two examples do not validate all payroll cases.
+No calculation change was indicated. The earlier 23-case comparison remains
+a separate official-table check, not a direct PDOC calculation.
+
+Source: [official CRA PDOC](https://www.canada.ca/en/revenue-agency/services/e-services/digital-services-businesses/payroll-deductions-online-calculator.html).
